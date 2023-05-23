@@ -7,6 +7,7 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
   <a href="https://github.com/speakeasy-sdks/neon-go/releases"><img src="https://img.shields.io/github/v/release/speakeasy-sdks/neon-go?sort=semver&style=for-the-badge" /></a>
 </div>
+
 <!-- Start SDK Installation -->
 
 ## SDK Installation
