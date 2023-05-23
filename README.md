@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://user-images.githubusercontent.com/6267663/227311185-62d5759f-743c-488b-8b97-09eae1dac881.png" width="300">
+    <img src="https://github.com/speakeasy-sdks/neon-go/assets/6267663/c272d080-d133-43a9-a142-8c9508923854" width="300">
     <h1>Neon Go SDK</h1>
    <p>Fully managed serverless PostgreSQL</p>
    <a href="https://neon.tech/docs/introduction"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=000&style=for-the-badge" /></a>
