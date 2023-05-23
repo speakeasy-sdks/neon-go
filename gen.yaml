@@ -5,4 +5,4 @@ generation:
   telemetryEnabled: false
 go:
   version: 0.0.1
-  packageName: neon-api
+  packageName: neon
