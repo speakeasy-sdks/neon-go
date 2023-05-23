@@ -8,9 +8,9 @@ import (
 )
 
 type CreateProjectBranchRequest struct {
-	BranchCreateRequest *shared.BranchCreateRequest `request:"mediaType=application/json"`
 	// The Neon project ID
-	ProjectID string `pathParam:"style=simple,explode=false,name=project_id"`
+	ProjectID           string                      `pathParam:"style=simple,explode=false,name=project_id"`
+	BranchCreateRequest *shared.BranchCreateRequest `request:"mediaType=application/json"`
 }
 
 // CreateProjectBranch201ApplicationJSON - Created a branch. An endpoint is only created if it was specified in the request.

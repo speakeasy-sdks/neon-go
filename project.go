@@ -121,7 +121,11 @@ func (s *project) CreateProject(ctx context.Context, request shared.ProjectCreat
 // You can obtain a `project_id` by listing the projects for your Neon account.
 // Deleting a project is a permanent action.
 // Deleting a project also deletes endpoints, branches, databases, and users that belong to the project.
-func (s *project) DeleteProject(ctx context.Context, request operations.DeleteProjectRequest) (*operations.DeleteProjectResponse, error) {
+func (s *project) DeleteProject(ctx context.Context, projectID string) (*operations.DeleteProjectResponse, error) {
+	request := operations.DeleteProjectRequest{
+		ProjectID: projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}", request, nil)
 	if err != nil {
@@ -189,7 +193,11 @@ func (s *project) DeleteProject(ctx context.Context, request operations.DeletePr
 // Retrieves information about the specified project.
 // A project is the top-level object in the Neon object hierarchy.
 // You can obtain a `project_id` by listing the projects for your Neon account.
-func (s *project) GetProject(ctx context.Context, request operations.GetProjectRequest) (*operations.GetProjectResponse, error) {
+func (s *project) GetProject(ctx context.Context, projectID string) (*operations.GetProjectResponse, error) {
+	request := operations.GetProjectRequest{
+		ProjectID: projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}", request, nil)
 	if err != nil {
@@ -257,7 +265,12 @@ func (s *project) GetProject(ctx context.Context, request operations.GetProjectR
 // Retrieves a list of projects for the Neon account.
 // A project is the top-level object in the Neon object hierarchy.
 // For more information, see [Manage projects](https://neon.tech/docs/manage/projects/).
-func (s *project) ListProjects(ctx context.Context, request operations.ListProjectsRequest) (*operations.ListProjectsResponse, error) {
+func (s *project) ListProjects(ctx context.Context, cursor *string, limit *int64) (*operations.ListProjectsResponse, error) {
+	request := operations.ListProjectsRequest{
+		Cursor: cursor,
+		Limit:  limit,
+	}
+
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/projects"
 
@@ -326,7 +339,12 @@ func (s *project) ListProjects(ctx context.Context, request operations.ListProje
 // Updates the specified project.
 // You can obtain a `project_id` by listing the projects for your Neon account.
 // Neon permits updating the project name only.
-func (s *project) UpdateProject(ctx context.Context, request operations.UpdateProjectRequest) (*operations.UpdateProjectResponse, error) {
+func (s *project) UpdateProject(ctx context.Context, projectUpdateRequest shared.ProjectUpdateRequest, projectID string) (*operations.UpdateProjectResponse, error) {
+	request := operations.UpdateProjectRequest{
+		ProjectUpdateRequest: projectUpdateRequest,
+		ProjectID:            projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}", request, nil)
 	if err != nil {

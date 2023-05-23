@@ -39,7 +39,12 @@ func newOperation(defaultClient, securityClient HTTPClient, serverURL, language,
 // An operation is an action performed on a Neon project resource.
 // You can obtain a `project_id` by listing the projects for your Neon account.
 // You can obtain a `operation_id` by listing operations for the project.
-func (s *operation) GetProjectOperation(ctx context.Context, request operations.GetProjectOperationRequest) (*operations.GetProjectOperationResponse, error) {
+func (s *operation) GetProjectOperation(ctx context.Context, operationID string, projectID string) (*operations.GetProjectOperationResponse, error) {
+	request := operations.GetProjectOperationRequest{
+		OperationID: operationID,
+		ProjectID:   projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/operations/{operation_id}", request, nil)
 	if err != nil {
@@ -109,7 +114,13 @@ func (s *operation) GetProjectOperation(ctx context.Context, request operations.
 // The number of operations returned can be large.
 // To paginate the response, issue an initial request with a `limit` value.
 // Then, add the `cursor` value that was returned in the response to the next request.
-func (s *operation) ListProjectOperations(ctx context.Context, request operations.ListProjectOperationsRequest) (*operations.ListProjectOperationsResponse, error) {
+func (s *operation) ListProjectOperations(ctx context.Context, projectID string, cursor *string, limit *int64) (*operations.ListProjectOperationsResponse, error) {
+	request := operations.ListProjectOperationsRequest{
+		ProjectID: projectID,
+		Cursor:    cursor,
+		Limit:     limit,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/operations", request, nil)
 	if err != nil {

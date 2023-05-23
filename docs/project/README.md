@@ -114,9 +114,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Project.DeleteProject(ctx, operations.DeleteProjectRequest{
-        ProjectID: "cupiditate",
-    })
+    res, err := s.Project.DeleteProject(ctx, "cupiditate")
     if err != nil {
         log.Fatal(err)
     }
@@ -154,9 +152,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Project.GetProject(ctx, operations.GetProjectRequest{
-        ProjectID: "quos",
-    })
+    res, err := s.Project.GetProject(ctx, "quos")
     if err != nil {
         log.Fatal(err)
     }
@@ -194,10 +190,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Project.ListProjects(ctx, operations.ListProjectsRequest{
-        Cursor: sdk.String("perferendis"),
-        Limit: sdk.Int64(164940),
-    })
+    res, err := s.Project.ListProjects(ctx, "perferendis", 164940)
     if err != nil {
         log.Fatal(err)
     }
@@ -236,29 +229,26 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Project.UpdateProject(ctx, operations.UpdateProjectRequest{
-        ProjectUpdateRequest: shared.ProjectUpdateRequest{
-            Project: shared.ProjectUpdateRequestProject{
-                DefaultEndpointSettings: map[string]string{
-                    "ipsam": "alias",
-                    "fugit": "dolorum",
-                    "excepturi": "tempora",
-                    "facilis": "tempore",
-                },
-                Name: sdk.String("Lucia Kemmer"),
-                Settings: &shared.ProjectSettingsData{
-                    Quota: &shared.ProjectQuota{
-                        ActiveTimeSeconds: sdk.Int64(576157),
-                        ComputeTimeSeconds: sdk.Int64(396098),
-                        DataTransferBytes: sdk.Int64(592042),
-                        LogicalSizeBytes: sdk.Int64(896039),
-                        WrittenDataBytes: sdk.Int64(572252),
-                    },
+    res, err := s.Project.UpdateProject(ctx, shared.ProjectUpdateRequest{
+        Project: shared.ProjectUpdateRequestProject{
+            DefaultEndpointSettings: map[string]string{
+                "ipsam": "alias",
+                "fugit": "dolorum",
+                "excepturi": "tempora",
+                "facilis": "tempore",
+            },
+            Name: sdk.String("Lucia Kemmer"),
+            Settings: &shared.ProjectSettingsData{
+                Quota: &shared.ProjectQuota{
+                    ActiveTimeSeconds: sdk.Int64(576157),
+                    ComputeTimeSeconds: sdk.Int64(396098),
+                    DataTransferBytes: sdk.Int64(592042),
+                    LogicalSizeBytes: sdk.Int64(896039),
+                    WrittenDataBytes: sdk.Int64(572252),
                 },
             },
         },
-        ProjectID: "officia",
-    })
+    }, "officia")
     if err != nil {
         log.Fatal(err)
     }
