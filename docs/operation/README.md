@@ -37,10 +37,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Operation.GetProjectOperation(ctx, operations.GetProjectOperationRequest{
-        OperationID: "aa52c3f5-ad01-49da-9ffe-78f097b0074f",
-        ProjectID: "dicta",
-    })
+    res, err := s.Operation.GetProjectOperation(ctx, "aa52c3f5-ad01-49da-9ffe-78f097b0074f", "dicta")
     if err != nil {
         log.Fatal(err)
     }
@@ -80,11 +77,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Operation.ListProjectOperations(ctx, operations.ListProjectOperationsRequest{
-        Cursor: sdk.String("corporis"),
-        Limit: sdk.Int64(296140),
-        ProjectID: "iusto",
-    })
+    res, err := s.Operation.ListProjectOperations(ctx, "corporis", "dolore", 480894)
     if err != nil {
         log.Fatal(err)
     }

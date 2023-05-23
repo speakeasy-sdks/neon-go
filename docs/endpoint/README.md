@@ -50,29 +50,26 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Endpoint.CreateProjectEndpoint(ctx, operations.CreateProjectEndpointRequest{
-        EndpointCreateRequest: shared.EndpointCreateRequest{
-            Endpoint: shared.EndpointCreateRequestEndpoint{
-                AutoscalingLimitMaxCu: sdk.Float64(9698.1),
-                AutoscalingLimitMinCu: sdk.Float64(6667.67),
-                BranchID: "mollitia",
-                Disabled: sdk.Bool(false),
-                PasswordlessAccess: sdk.Bool(false),
-                PoolerEnabled: sdk.Bool(false),
-                PoolerMode: shared.EndpointPoolerModeTransaction.ToPointer(),
-                Provisioner: shared.ProvisionerK8sNeonvm.ToPointer(),
-                RegionID: sdk.String("dolores"),
-                Settings: &shared.EndpointSettingsData{
-                    PgSettings: map[string]string{
-                        "corporis": "explicabo",
-                    },
+    res, err := s.Endpoint.CreateProjectEndpoint(ctx, shared.EndpointCreateRequest{
+        Endpoint: shared.EndpointCreateRequestEndpoint{
+            AutoscalingLimitMaxCu: sdk.Float64(9698.1),
+            AutoscalingLimitMinCu: sdk.Float64(6667.67),
+            BranchID: "mollitia",
+            Disabled: sdk.Bool(false),
+            PasswordlessAccess: sdk.Bool(false),
+            PoolerEnabled: sdk.Bool(false),
+            PoolerMode: shared.EndpointPoolerModeTransaction.ToPointer(),
+            Provisioner: shared.ProvisionerK8sNeonvm.ToPointer(),
+            RegionID: sdk.String("dolores"),
+            Settings: &shared.EndpointSettingsData{
+                PgSettings: map[string]string{
+                    "corporis": "explicabo",
                 },
-                SuspendTimeoutSeconds: sdk.Int64(750686),
-                Type: shared.EndpointTypeReadOnly,
             },
+            SuspendTimeoutSeconds: sdk.Int64(750686),
+            Type: shared.EndpointTypeReadOnly,
         },
-        ProjectID: "omnis",
-    })
+    }, "omnis")
     if err != nil {
         log.Fatal(err)
     }
@@ -116,10 +113,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Endpoint.DeleteProjectEndpoint(ctx, operations.DeleteProjectEndpointRequest{
-        EndpointID: "nemo",
-        ProjectID: "minima",
-    })
+    res, err := s.Endpoint.DeleteProjectEndpoint(ctx, "nemo", "minima")
     if err != nil {
         log.Fatal(err)
     }
@@ -160,10 +154,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Endpoint.GetProjectEndpoint(ctx, operations.GetProjectEndpointRequest{
-        EndpointID: "excepturi",
-        ProjectID: "accusantium",
-    })
+    res, err := s.Endpoint.GetProjectEndpoint(ctx, "excepturi", "accusantium")
     if err != nil {
         log.Fatal(err)
     }
@@ -202,9 +193,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Endpoint.ListProjectEndpoints(ctx, operations.ListProjectEndpointsRequest{
-        ProjectID: "iure",
-    })
+    res, err := s.Endpoint.ListProjectEndpoints(ctx, "iure")
     if err != nil {
         log.Fatal(err)
     }
@@ -246,10 +235,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Endpoint.StartProjectEndpoint(ctx, operations.StartProjectEndpointRequest{
-        EndpointID: "culpa",
-        ProjectID: "doloribus",
-    })
+    res, err := s.Endpoint.StartProjectEndpoint(ctx, "culpa", "doloribus")
     if err != nil {
         log.Fatal(err)
     }
@@ -289,10 +275,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Endpoint.SuspendProjectEndpoint(ctx, operations.SuspendProjectEndpointRequest{
-        EndpointID: "sapiente",
-        ProjectID: "architecto",
-    })
+    res, err := s.Endpoint.SuspendProjectEndpoint(ctx, "sapiente", "architecto")
     if err != nil {
         log.Fatal(err)
     }
@@ -340,31 +323,27 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Endpoint.UpdateProjectEndpoint(ctx, operations.UpdateProjectEndpointRequest{
-        EndpointUpdateRequest: shared.EndpointUpdateRequest{
-            Endpoint: shared.EndpointUpdateRequestEndpoint{
-                AutoscalingLimitMaxCu: sdk.Float64(6527.9),
-                AutoscalingLimitMinCu: sdk.Float64(2088.76),
-                BranchID: sdk.String("culpa"),
-                Disabled: sdk.Bool(false),
-                PasswordlessAccess: sdk.Bool(false),
-                PoolerEnabled: sdk.Bool(false),
-                PoolerMode: shared.EndpointPoolerModeTransaction.ToPointer(),
-                Provisioner: shared.ProvisionerK8sPod.ToPointer(),
-                Settings: &shared.EndpointSettingsData{
-                    PgSettings: map[string]string{
-                        "mollitia": "occaecati",
-                        "numquam": "commodi",
-                        "quam": "molestiae",
-                        "velit": "error",
-                    },
+    res, err := s.Endpoint.UpdateProjectEndpoint(ctx, shared.EndpointUpdateRequest{
+        Endpoint: shared.EndpointUpdateRequestEndpoint{
+            AutoscalingLimitMaxCu: sdk.Float64(6527.9),
+            AutoscalingLimitMinCu: sdk.Float64(2088.76),
+            BranchID: sdk.String("culpa"),
+            Disabled: sdk.Bool(false),
+            PasswordlessAccess: sdk.Bool(false),
+            PoolerEnabled: sdk.Bool(false),
+            PoolerMode: shared.EndpointPoolerModeTransaction.ToPointer(),
+            Provisioner: shared.ProvisionerK8sPod.ToPointer(),
+            Settings: &shared.EndpointSettingsData{
+                PgSettings: map[string]string{
+                    "mollitia": "occaecati",
+                    "numquam": "commodi",
+                    "quam": "molestiae",
+                    "velit": "error",
                 },
-                SuspendTimeoutSeconds: sdk.Int64(158969),
             },
+            SuspendTimeoutSeconds: sdk.Int64(158969),
         },
-        EndpointID: "quis",
-        ProjectID: "vitae",
-    })
+    }, "quis", "vitae")
     if err != nil {
         log.Fatal(err)
     }

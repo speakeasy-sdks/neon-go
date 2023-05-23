@@ -38,7 +38,12 @@ func newPreview(defaultClient, securityClient HTTPClient, serverURL, language, s
 // ListProjectsConsumption - Get a list of projects consumption
 // Note, this is a preview API and could be subjected to significant changes in the future.
 // Retrieves a list of per-project consumption for the current billing period.
-func (s *preview) ListProjectsConsumption(ctx context.Context, request operations.ListProjectsConsumptionRequest) (*operations.ListProjectsConsumptionResponse, error) {
+func (s *preview) ListProjectsConsumption(ctx context.Context, cursor *string, limit *int64) (*operations.ListProjectsConsumptionResponse, error) {
+	request := operations.ListProjectsConsumptionRequest{
+		Cursor: cursor,
+		Limit:  limit,
+	}
+
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/consumption/projects"
 

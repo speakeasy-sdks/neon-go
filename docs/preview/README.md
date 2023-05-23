@@ -34,10 +34,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Preview.ListProjectsConsumption(ctx, operations.ListProjectsConsumptionRequest{
-        Cursor: sdk.String("dicta"),
-        Limit: sdk.Int64(688661),
-    })
+    res, err := s.Preview.ListProjectsConsumption(ctx, "dicta", 688661)
     if err != nil {
         log.Fatal(err)
     }

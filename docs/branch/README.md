@@ -57,32 +57,29 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.CreateProjectBranch(ctx, operations.CreateProjectBranchRequest{
-        BranchCreateRequest: &shared.BranchCreateRequest{
-            Branch: &shared.BranchCreateRequestBranch{
-                Name: sdk.String("Stuart Stiedemann"),
-                ParentID: sdk.String("vel"),
-                ParentLsn: sdk.String("error"),
-                ParentTimestamp: types.MustTimeFromString("2022-03-26T09:37:56.283Z"),
+    res, err := s.Branch.CreateProjectBranch(ctx, "quibusdam", &shared.BranchCreateRequest{
+        Branch: &shared.BranchCreateRequestBranch{
+            Name: sdk.String("Ismael Little"),
+            ParentID: sdk.String("error"),
+            ParentLsn: sdk.String("deserunt"),
+            ParentTimestamp: types.MustTimeFromString("2022-07-25T06:44:09.184Z"),
+        },
+        Endpoints: []shared.BranchCreateRequestEndpointOptions{
+            shared.BranchCreateRequestEndpointOptions{
+                AutoscalingLimitMaxCu: sdk.Float64(8917.73),
+                AutoscalingLimitMinCu: sdk.Float64(567.13),
+                Provisioner: shared.ProvisionerK8sNeonvm.ToPointer(),
+                SuspendTimeoutSeconds: sdk.Int64(272656),
+                Type: shared.EndpointTypeReadOnly,
             },
-            Endpoints: []shared.BranchCreateRequestEndpointOptions{
-                shared.BranchCreateRequestEndpointOptions{
-                    AutoscalingLimitMaxCu: sdk.Float64(2975.34),
-                    AutoscalingLimitMinCu: sdk.Float64(8917.73),
-                    Provisioner: shared.ProvisionerK8sPod.ToPointer(),
-                    SuspendTimeoutSeconds: sdk.Int64(963663),
-                    Type: shared.EndpointTypeReadOnly,
-                },
-                shared.BranchCreateRequestEndpointOptions{
-                    AutoscalingLimitMaxCu: sdk.Float64(3834.41),
-                    AutoscalingLimitMinCu: sdk.Float64(4776.65),
-                    Provisioner: shared.ProvisionerK8sNeonvm.ToPointer(),
-                    SuspendTimeoutSeconds: sdk.Int64(812169),
-                    Type: shared.EndpointTypeReadWrite,
-                },
+            shared.BranchCreateRequestEndpointOptions{
+                AutoscalingLimitMaxCu: sdk.Float64(4776.65),
+                AutoscalingLimitMinCu: sdk.Float64(7917.25),
+                Provisioner: shared.ProvisionerK8sNeonvm.ToPointer(),
+                SuspendTimeoutSeconds: sdk.Int64(528895),
+                Type: shared.EndpointTypeReadOnly,
             },
         },
-        ProjectID: "iusto",
     })
     if err != nil {
         log.Fatal(err)
@@ -124,16 +121,12 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.CreateProjectBranchDatabase(ctx, operations.CreateProjectBranchDatabaseRequest{
-        DatabaseCreateRequest: shared.DatabaseCreateRequest{
-            Database: shared.DatabaseCreateRequestDatabase{
-                Name: "Charlie Walsh II",
-                OwnerName: "veritatis",
-            },
+    res, err := s.Branch.CreateProjectBranchDatabase(ctx, shared.DatabaseCreateRequest{
+        Database: shared.DatabaseCreateRequestDatabase{
+            Name: "Charlie Walsh II",
+            OwnerName: "veritatis",
         },
-        BranchID: "deserunt",
-        ProjectID: "perferendis",
-    })
+    }, "deserunt", "perferendis")
     if err != nil {
         log.Fatal(err)
     }
@@ -177,15 +170,11 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.CreateProjectBranchRole(ctx, operations.CreateProjectBranchRoleRequest{
-        RoleCreateRequest: shared.RoleCreateRequest{
-            Role: shared.RoleCreateRequestRole{
-                Name: "Estelle Will",
-            },
+    res, err := s.Branch.CreateProjectBranchRole(ctx, shared.RoleCreateRequest{
+        Role: shared.RoleCreateRequestRole{
+            Name: "Estelle Will",
         },
-        BranchID: "at",
-        ProjectID: "at",
-    })
+    }, "at", "at")
     if err != nil {
         log.Fatal(err)
     }
@@ -231,10 +220,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.DeleteProjectBranch(ctx, operations.DeleteProjectBranchRequest{
-        BranchID: "maiores",
-        ProjectID: "molestiae",
-    })
+    res, err := s.Branch.DeleteProjectBranch(ctx, "maiores", "molestiae")
     if err != nil {
         log.Fatal(err)
     }
@@ -273,11 +259,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.DeleteProjectBranchDatabase(ctx, operations.DeleteProjectBranchDatabaseRequest{
-        BranchID: "quod",
-        DatabaseName: "quod",
-        ProjectID: "esse",
-    })
+    res, err := s.Branch.DeleteProjectBranchDatabase(ctx, "quod", "quod", "esse")
     if err != nil {
         log.Fatal(err)
     }
@@ -318,11 +300,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.DeleteProjectBranchRole(ctx, operations.DeleteProjectBranchRoleRequest{
-        BranchID: "totam",
-        ProjectID: "porro",
-        RoleName: "dolorum",
-    })
+    res, err := s.Branch.DeleteProjectBranchRole(ctx, "totam", "porro", "dolorum")
     if err != nil {
         log.Fatal(err)
     }
@@ -366,10 +344,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.GetProjectBranch(ctx, operations.GetProjectBranchRequest{
-        BranchID: "dicta",
-        ProjectID: "nam",
-    })
+    res, err := s.Branch.GetProjectBranch(ctx, "dicta", "nam")
     if err != nil {
         log.Fatal(err)
     }
@@ -408,11 +383,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.GetProjectBranchDatabase(ctx, operations.GetProjectBranchDatabaseRequest{
-        BranchID: "officia",
-        DatabaseName: "occaecati",
-        ProjectID: "fugit",
-    })
+    res, err := s.Branch.GetProjectBranchDatabase(ctx, "officia", "occaecati", "fugit")
     if err != nil {
         log.Fatal(err)
     }
@@ -453,11 +424,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.GetProjectBranchRole(ctx, operations.GetProjectBranchRoleRequest{
-        BranchID: "deleniti",
-        ProjectID: "hic",
-        RoleName: "optio",
-    })
+    res, err := s.Branch.GetProjectBranchRole(ctx, "deleniti", "hic", "optio")
     if err != nil {
         log.Fatal(err)
     }
@@ -498,11 +465,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.GetProjectBranchRolePassword(ctx, operations.GetProjectBranchRolePasswordRequest{
-        BranchID: "totam",
-        ProjectID: "beatae",
-        RoleName: "commodi",
-    })
+    res, err := s.Branch.GetProjectBranchRolePassword(ctx, "totam", "beatae", "commodi")
     if err != nil {
         log.Fatal(err)
     }
@@ -542,10 +505,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.ListProjectBranchDatabases(ctx, operations.ListProjectBranchDatabasesRequest{
-        BranchID: "molestiae",
-        ProjectID: "modi",
-    })
+    res, err := s.Branch.ListProjectBranchDatabases(ctx, "molestiae", "modi")
     if err != nil {
         log.Fatal(err)
     }
@@ -584,10 +544,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.ListProjectBranchEndpoints(ctx, operations.ListProjectBranchEndpointsRequest{
-        BranchID: "qui",
-        ProjectID: "impedit",
-    })
+    res, err := s.Branch.ListProjectBranchEndpoints(ctx, "qui", "impedit")
     if err != nil {
         log.Fatal(err)
     }
@@ -627,10 +584,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.ListProjectBranchRoles(ctx, operations.ListProjectBranchRolesRequest{
-        BranchID: "cum",
-        ProjectID: "esse",
-    })
+    res, err := s.Branch.ListProjectBranchRoles(ctx, "cum", "esse")
     if err != nil {
         log.Fatal(err)
     }
@@ -673,9 +627,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.ListProjectBranches(ctx, operations.ListProjectBranchesRequest{
-        ProjectID: "ipsum",
-    })
+    res, err := s.Branch.ListProjectBranches(ctx, "ipsum")
     if err != nil {
         log.Fatal(err)
     }
@@ -721,11 +673,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.ResetProjectBranchRolePassword(ctx, operations.ResetProjectBranchRolePasswordRequest{
-        BranchID: "excepturi",
-        ProjectID: "aspernatur",
-        RoleName: "perferendis",
-    })
+    res, err := s.Branch.ResetProjectBranchRolePassword(ctx, "excepturi", "aspernatur", "perferendis")
     if err != nil {
         log.Fatal(err)
     }
@@ -764,10 +712,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.SetPrimaryProjectBranch(ctx, operations.SetPrimaryProjectBranchRequest{
-        BranchID: "ad",
-        ProjectID: "natus",
-    })
+    res, err := s.Branch.SetPrimaryProjectBranch(ctx, "ad", "natus")
     if err != nil {
         log.Fatal(err)
     }
@@ -807,15 +752,11 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.UpdateProjectBranch(ctx, operations.UpdateProjectBranchRequest{
-        BranchUpdateRequest: shared.BranchUpdateRequest{
-            Branch: shared.BranchUpdateRequestBranch{
-                Name: sdk.String("Sheryl Fadel"),
-            },
+    res, err := s.Branch.UpdateProjectBranch(ctx, shared.BranchUpdateRequest{
+        Branch: shared.BranchUpdateRequestBranch{
+            Name: sdk.String("Sheryl Fadel"),
         },
-        BranchID: "hic",
-        ProjectID: "saepe",
-    })
+    }, "hic", "saepe")
     if err != nil {
         log.Fatal(err)
     }
@@ -855,17 +796,12 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Branch.UpdateProjectBranchDatabase(ctx, operations.UpdateProjectBranchDatabaseRequest{
-        DatabaseUpdateRequest: shared.DatabaseUpdateRequest{
-            Database: shared.DatabaseUpdateRequestDatabase{
-                Name: sdk.String("Harvey Hessel"),
-                OwnerName: sdk.String("saepe"),
-            },
+    res, err := s.Branch.UpdateProjectBranchDatabase(ctx, shared.DatabaseUpdateRequest{
+        Database: shared.DatabaseUpdateRequestDatabase{
+            Name: sdk.String("Harvey Hessel"),
+            OwnerName: sdk.String("saepe"),
         },
-        BranchID: "quidem",
-        DatabaseName: "architecto",
-        ProjectID: "ipsa",
-    })
+    }, "quidem", "architecto", "ipsa")
     if err != nil {
         log.Fatal(err)
     }

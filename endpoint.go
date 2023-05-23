@@ -46,7 +46,12 @@ func newEndpoint(defaultClient, securityClient HTTPClient, serverURL, language, 
 // Currently, only the `read_write` endpoint type is supported.
 // For supported regions and `region_id` values, see [Regions](https://neon.tech/docs/introduction/regions/).
 // For more information about endpoints, see [Manage endpoints](https://neon.tech/docs/manage/endpoints/).
-func (s *endpoint) CreateProjectEndpoint(ctx context.Context, request operations.CreateProjectEndpointRequest) (*operations.CreateProjectEndpointResponse, error) {
+func (s *endpoint) CreateProjectEndpoint(ctx context.Context, endpointCreateRequest shared.EndpointCreateRequest, projectID string) (*operations.CreateProjectEndpointResponse, error) {
+	request := operations.CreateProjectEndpointRequest{
+		EndpointCreateRequest: endpointCreateRequest,
+		ProjectID:             projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/endpoints", request, nil)
 	if err != nil {
@@ -130,7 +135,12 @@ func (s *endpoint) CreateProjectEndpoint(ctx context.Context, request operations
 // You can obtain an `endpoint_id` by listing your project's endpoints.
 // An `endpoint_id` has an `ep-` prefix.
 // For more information about endpoints, see [Manage endpoints](https://neon.tech/docs/manage/endpoints/).
-func (s *endpoint) DeleteProjectEndpoint(ctx context.Context, request operations.DeleteProjectEndpointRequest) (*operations.DeleteProjectEndpointResponse, error) {
+func (s *endpoint) DeleteProjectEndpoint(ctx context.Context, endpointID string, projectID string) (*operations.DeleteProjectEndpointResponse, error) {
+	request := operations.DeleteProjectEndpointRequest{
+		EndpointID: endpointID,
+		ProjectID:  projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/endpoints/{endpoint_id}", request, nil)
 	if err != nil {
@@ -201,7 +211,12 @@ func (s *endpoint) DeleteProjectEndpoint(ctx context.Context, request operations
 // You can obtain an `endpoint_id` by listing your project's endpoints.
 // An `endpoint_id` has an `ep-` prefix.
 // For more information about endpoints, see [Manage endpoints](https://neon.tech/docs/manage/endpoints/).
-func (s *endpoint) GetProjectEndpoint(ctx context.Context, request operations.GetProjectEndpointRequest) (*operations.GetProjectEndpointResponse, error) {
+func (s *endpoint) GetProjectEndpoint(ctx context.Context, endpointID string, projectID string) (*operations.GetProjectEndpointResponse, error) {
+	request := operations.GetProjectEndpointRequest{
+		EndpointID: endpointID,
+		ProjectID:  projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/endpoints/{endpoint_id}", request, nil)
 	if err != nil {
@@ -270,7 +285,11 @@ func (s *endpoint) GetProjectEndpoint(ctx context.Context, request operations.Ge
 // An endpoint is a Neon compute instance.
 // You can obtain a `project_id` by listing the projects for your Neon account.
 // For more information about endpoints, see [Manage endpoints](https://neon.tech/docs/manage/endpoints/).
-func (s *endpoint) ListProjectEndpoints(ctx context.Context, request operations.ListProjectEndpointsRequest) (*operations.ListProjectEndpointsResponse, error) {
+func (s *endpoint) ListProjectEndpoints(ctx context.Context, projectID string) (*operations.ListProjectEndpointsResponse, error) {
+	request := operations.ListProjectEndpointsRequest{
+		ProjectID: projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/endpoints", request, nil)
 	if err != nil {
@@ -342,7 +361,12 @@ func (s *endpoint) ListProjectEndpoints(ctx context.Context, request operations.
 // You can obtain an `endpoint_id` by listing your project's endpoints.
 // An `endpoint_id` has an `ep-` prefix.
 // For more information about endpoints, see [Manage endpoints](https://neon.tech/docs/manage/endpoints/).
-func (s *endpoint) StartProjectEndpoint(ctx context.Context, request operations.StartProjectEndpointRequest) (*operations.StartProjectEndpointResponse, error) {
+func (s *endpoint) StartProjectEndpoint(ctx context.Context, endpointID string, projectID string) (*operations.StartProjectEndpointResponse, error) {
+	request := operations.StartProjectEndpointRequest{
+		EndpointID: endpointID,
+		ProjectID:  projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/endpoints/{endpoint_id}/start", request, nil)
 	if err != nil {
@@ -412,7 +436,12 @@ func (s *endpoint) StartProjectEndpoint(ctx context.Context, request operations.
 // You can obtain an `endpoint_id` by listing your project's endpoints.
 // An `endpoint_id` has an `ep-` prefix.
 // For more information about endpoints, see [Manage endpoints](https://neon.tech/docs/manage/endpoints/).
-func (s *endpoint) SuspendProjectEndpoint(ctx context.Context, request operations.SuspendProjectEndpointRequest) (*operations.SuspendProjectEndpointResponse, error) {
+func (s *endpoint) SuspendProjectEndpoint(ctx context.Context, endpointID string, projectID string) (*operations.SuspendProjectEndpointResponse, error) {
+	request := operations.SuspendProjectEndpointRequest{
+		EndpointID: endpointID,
+		ProjectID:  projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/endpoints/{endpoint_id}/suspend", request, nil)
 	if err != nil {
@@ -489,7 +518,13 @@ func (s *endpoint) SuspendProjectEndpoint(ctx context.Context, request operation
 // The client must wait for the last operation to finish before using the endpoint.
 // If the endpoint was idle before the update, the endpoint becomes active for a short period of time,
 // and the control plane suspends it again after the update.
-func (s *endpoint) UpdateProjectEndpoint(ctx context.Context, request operations.UpdateProjectEndpointRequest) (*operations.UpdateProjectEndpointResponse, error) {
+func (s *endpoint) UpdateProjectEndpoint(ctx context.Context, endpointUpdateRequest shared.EndpointUpdateRequest, endpointID string, projectID string) (*operations.UpdateProjectEndpointResponse, error) {
+	request := operations.UpdateProjectEndpointRequest{
+		EndpointUpdateRequest: endpointUpdateRequest,
+		EndpointID:            endpointID,
+		ProjectID:             projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/endpoints/{endpoint_id}", request, nil)
 	if err != nil {

@@ -185,7 +185,11 @@ func (s *apiKey) ListAPIKeys(ctx context.Context) (*operations.ListAPIKeysRespon
 // You can obtain `key_id` values by listing the API keys for your Neon account.
 // API keys can also be managed in the Neon Console.
 // See [Manage API keys](https://neon.tech/docs/manage/api-keys/).
-func (s *apiKey) RevokeAPIKey(ctx context.Context, request operations.RevokeAPIKeyRequest) (*operations.RevokeAPIKeyResponse, error) {
+func (s *apiKey) RevokeAPIKey(ctx context.Context, keyID int64) (*operations.RevokeAPIKeyResponse, error) {
+	request := operations.RevokeAPIKeyRequest{
+		KeyID: keyID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/api_keys/{key_id}", request, nil)
 	if err != nil {

@@ -7,3 +7,11 @@ Based on:
 - Speakeasy CLI 1.37.5 (2.32.2) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v1.0.0] https://github.com/speakeasy-sdks/neon-go/releases/tag/v1.0.0 - .
+
+## 2023-05-23 17:30:53
+### Changes
+Based on:
+- OpenAPI Doc v2 
+- Speakeasy CLI 1.37.5 (2.32.2) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v1.0.1] https://github.com/speakeasy-sdks/neon-go/releases/tag/v1.0.1 - .

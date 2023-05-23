@@ -8,12 +8,12 @@ import (
 )
 
 type ListProjectOperationsRequest struct {
+	// The Neon project ID
+	ProjectID string `pathParam:"style=simple,explode=false,name=project_id"`
 	// Specify the cursor value from the previous response to get the next batch of operations
 	Cursor *string `queryParam:"style=form,explode=true,name=cursor"`
 	// Specify a value from 1 to 1000 to limit number of operations in the response
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
-	// The Neon project ID
-	ProjectID string `pathParam:"style=simple,explode=false,name=project_id"`
 }
 
 // ListProjectOperations200ApplicationJSON - Returned a list of operations

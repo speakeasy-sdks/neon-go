@@ -41,7 +41,12 @@ func newBranch(defaultClient, securityClient HTTPClient, serverURL, language, sd
 // This method does not require a request body, but you can specify one to create an endpoint for the branch or to select a non-default parent branch.
 // The default behavior is to create a branch from the project's root branch (`main`) with no endpoint, and the branch name is auto-generated.
 // For related information, see [Manage branches](https://neon.tech/docs/manage/branches/).
-func (s *branch) CreateProjectBranch(ctx context.Context, request operations.CreateProjectBranchRequest) (*operations.CreateProjectBranchResponse, error) {
+func (s *branch) CreateProjectBranch(ctx context.Context, projectID string, branchCreateRequest *shared.BranchCreateRequest) (*operations.CreateProjectBranchResponse, error) {
+	request := operations.CreateProjectBranchRequest{
+		ProjectID:           projectID,
+		BranchCreateRequest: branchCreateRequest,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches", request, nil)
 	if err != nil {
@@ -118,7 +123,13 @@ func (s *branch) CreateProjectBranch(ctx context.Context, request operations.Cre
 // You can obtain a `project_id` by listing the projects for your Neon account.
 // You can obtain the `branch_id` by listing the project's branches.
 // For related information, see [Manage databases](https://neon.tech/docs/manage/databases/).
-func (s *branch) CreateProjectBranchDatabase(ctx context.Context, request operations.CreateProjectBranchDatabaseRequest) (*operations.CreateProjectBranchDatabaseResponse, error) {
+func (s *branch) CreateProjectBranchDatabase(ctx context.Context, databaseCreateRequest shared.DatabaseCreateRequest, branchID string, projectID string) (*operations.CreateProjectBranchDatabaseResponse, error) {
+	request := operations.CreateProjectBranchDatabaseRequest{
+		DatabaseCreateRequest: databaseCreateRequest,
+		BranchID:              branchID,
+		ProjectID:             projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/databases", request, nil)
 	if err != nil {
@@ -201,7 +212,13 @@ func (s *branch) CreateProjectBranchDatabase(ctx context.Context, request operat
 //
 // Connections established to the active read-write endpoint will be dropped.
 // If the read-write endpoint is idle, the endpoint becomes active for a short period of time and is suspended afterward.
-func (s *branch) CreateProjectBranchRole(ctx context.Context, request operations.CreateProjectBranchRoleRequest) (*operations.CreateProjectBranchRoleResponse, error) {
+func (s *branch) CreateProjectBranchRole(ctx context.Context, roleCreateRequest shared.RoleCreateRequest, branchID string, projectID string) (*operations.CreateProjectBranchRoleResponse, error) {
+	request := operations.CreateProjectBranchRoleRequest{
+		RoleCreateRequest: roleCreateRequest,
+		BranchID:          branchID,
+		ProjectID:         projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/roles", request, nil)
 	if err != nil {
@@ -287,7 +304,12 @@ func (s *branch) CreateProjectBranchRole(ctx context.Context, request operations
 // The deletion occurs after all operations finish.
 // You cannot delete a branch if it is the only remaining branch in the project.
 // A project must have at least one branch.
-func (s *branch) DeleteProjectBranch(ctx context.Context, request operations.DeleteProjectBranchRequest) (*operations.DeleteProjectBranchResponse, error) {
+func (s *branch) DeleteProjectBranch(ctx context.Context, branchID string, projectID string) (*operations.DeleteProjectBranchResponse, error) {
+	request := operations.DeleteProjectBranchRequest{
+		BranchID:  branchID,
+		ProjectID: projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}", request, nil)
 	if err != nil {
@@ -356,7 +378,13 @@ func (s *branch) DeleteProjectBranch(ctx context.Context, request operations.Del
 // You can obtain a `project_id` by listing the projects for your Neon account.
 // You can obtain the `branch_id` and `database_name` by listing branch's databases.
 // For related information, see [Manage databases](https://neon.tech/docs/manage/databases/).
-func (s *branch) DeleteProjectBranchDatabase(ctx context.Context, request operations.DeleteProjectBranchDatabaseRequest) (*operations.DeleteProjectBranchDatabaseResponse, error) {
+func (s *branch) DeleteProjectBranchDatabase(ctx context.Context, branchID string, databaseName string, projectID string) (*operations.DeleteProjectBranchDatabaseResponse, error) {
+	request := operations.DeleteProjectBranchDatabaseRequest{
+		BranchID:     branchID,
+		DatabaseName: databaseName,
+		ProjectID:    projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/databases/{database_name}", request, nil)
 	if err != nil {
@@ -427,7 +455,13 @@ func (s *branch) DeleteProjectBranchDatabase(ctx context.Context, request operat
 // You can obtain the `role_name` by listing the roles for a branch.
 // In Neon, the terms "role" and "user" are synonymous.
 // For related information, see [Managing users](https://neon.tech/docs/manage/users/).
-func (s *branch) DeleteProjectBranchRole(ctx context.Context, request operations.DeleteProjectBranchRoleRequest) (*operations.DeleteProjectBranchRoleResponse, error) {
+func (s *branch) DeleteProjectBranchRole(ctx context.Context, branchID string, projectID string, roleName string) (*operations.DeleteProjectBranchRoleResponse, error) {
+	request := operations.DeleteProjectBranchRoleRequest{
+		BranchID:  branchID,
+		ProjectID: projectID,
+		RoleName:  roleName,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/roles/{role_name}", request, nil)
 	if err != nil {
@@ -501,7 +535,12 @@ func (s *branch) DeleteProjectBranchRole(ctx context.Context, request operations
 // A project may contain child branches that were branched from `main` or from another branch.
 // A parent branch is identified by a `parent_id` value, which is the `id` of the parent branch.
 // For related information, see [Manage branches](https://neon.tech/docs/manage/branches/).
-func (s *branch) GetProjectBranch(ctx context.Context, request operations.GetProjectBranchRequest) (*operations.GetProjectBranchResponse, error) {
+func (s *branch) GetProjectBranch(ctx context.Context, branchID string, projectID string) (*operations.GetProjectBranchResponse, error) {
+	request := operations.GetProjectBranchRequest{
+		BranchID:  branchID,
+		ProjectID: projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}", request, nil)
 	if err != nil {
@@ -570,7 +609,13 @@ func (s *branch) GetProjectBranch(ctx context.Context, request operations.GetPro
 // You can obtain a `project_id` by listing the projects for your Neon account.
 // You can obtain the `branch_id` and `database_name` by listing branch's databases.
 // For related information, see [Manage databases](https://neon.tech/docs/manage/databases/).
-func (s *branch) GetProjectBranchDatabase(ctx context.Context, request operations.GetProjectBranchDatabaseRequest) (*operations.GetProjectBranchDatabaseResponse, error) {
+func (s *branch) GetProjectBranchDatabase(ctx context.Context, branchID string, databaseName string, projectID string) (*operations.GetProjectBranchDatabaseResponse, error) {
+	request := operations.GetProjectBranchDatabaseRequest{
+		BranchID:     branchID,
+		DatabaseName: databaseName,
+		ProjectID:    projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/databases/{database_name}", request, nil)
 	if err != nil {
@@ -641,7 +686,13 @@ func (s *branch) GetProjectBranchDatabase(ctx context.Context, request operation
 // You can obtain the `role_name` by listing the roles for a branch.
 // In Neon, the terms "role" and "user" are synonymous.
 // For related information, see [Managing users](https://neon.tech/docs/manage/users/).
-func (s *branch) GetProjectBranchRole(ctx context.Context, request operations.GetProjectBranchRoleRequest) (*operations.GetProjectBranchRoleResponse, error) {
+func (s *branch) GetProjectBranchRole(ctx context.Context, branchID string, projectID string, roleName string) (*operations.GetProjectBranchRoleResponse, error) {
+	request := operations.GetProjectBranchRoleRequest{
+		BranchID:  branchID,
+		ProjectID: projectID,
+		RoleName:  roleName,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/roles/{role_name}", request, nil)
 	if err != nil {
@@ -712,7 +763,13 @@ func (s *branch) GetProjectBranchRole(ctx context.Context, request operations.Ge
 // You can obtain the `role_name` by listing the roles for a branch.
 // In Neon, the terms "role" and "user" are synonymous.
 // For related information, see [Managing users](https://neon.tech/docs/manage/users/).
-func (s *branch) GetProjectBranchRolePassword(ctx context.Context, request operations.GetProjectBranchRolePasswordRequest) (*operations.GetProjectBranchRolePasswordResponse, error) {
+func (s *branch) GetProjectBranchRolePassword(ctx context.Context, branchID string, projectID string, roleName string) (*operations.GetProjectBranchRolePasswordResponse, error) {
+	request := operations.GetProjectBranchRolePasswordRequest{
+		BranchID:  branchID,
+		ProjectID: projectID,
+		RoleName:  roleName,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/roles/{role_name}/reveal_password", request, nil)
 	if err != nil {
@@ -786,7 +843,12 @@ func (s *branch) GetProjectBranchRolePassword(ctx context.Context, request opera
 // You can obtain a `project_id` by listing the projects for your Neon account.
 // You can obtain the `branch_id` by listing the project's branches.
 // For related information, see [Manage databases](https://neon.tech/docs/manage/databases/).
-func (s *branch) ListProjectBranchDatabases(ctx context.Context, request operations.ListProjectBranchDatabasesRequest) (*operations.ListProjectBranchDatabasesResponse, error) {
+func (s *branch) ListProjectBranchDatabases(ctx context.Context, branchID string, projectID string) (*operations.ListProjectBranchDatabasesResponse, error) {
+	request := operations.ListProjectBranchDatabasesRequest{
+		BranchID:  branchID,
+		ProjectID: projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/databases", request, nil)
 	if err != nil {
@@ -855,7 +917,12 @@ func (s *branch) ListProjectBranchDatabases(ctx context.Context, request operati
 // Currently, Neon permits only one endpoint per branch.
 // You can obtain a `project_id` by listing the projects for your Neon account.
 // You can obtain the `branch_id` by listing the project's branches.
-func (s *branch) ListProjectBranchEndpoints(ctx context.Context, request operations.ListProjectBranchEndpointsRequest) (*operations.ListProjectBranchEndpointsResponse, error) {
+func (s *branch) ListProjectBranchEndpoints(ctx context.Context, branchID string, projectID string) (*operations.ListProjectBranchEndpointsResponse, error) {
+	request := operations.ListProjectBranchEndpointsRequest{
+		BranchID:  branchID,
+		ProjectID: projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/endpoints", request, nil)
 	if err != nil {
@@ -925,7 +992,12 @@ func (s *branch) ListProjectBranchEndpoints(ctx context.Context, request operati
 // You can obtain the `branch_id` by listing the project's branches.
 // In Neon, the terms "role" and "user" are synonymous.
 // For related information, see [Manage users](https://neon.tech/docs/manage/users/).
-func (s *branch) ListProjectBranchRoles(ctx context.Context, request operations.ListProjectBranchRolesRequest) (*operations.ListProjectBranchRolesResponse, error) {
+func (s *branch) ListProjectBranchRoles(ctx context.Context, branchID string, projectID string) (*operations.ListProjectBranchRolesResponse, error) {
+	request := operations.ListProjectBranchRolesRequest{
+		BranchID:  branchID,
+		ProjectID: projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/roles", request, nil)
 	if err != nil {
@@ -998,7 +1070,11 @@ func (s *branch) ListProjectBranchRoles(ctx context.Context, request operations.
 // A project may contain child branches that were branched from `main` or from another branch.
 // A parent branch is identified by the `parent_id` value, which is the `id` of the parent branch.
 // For related information, see [Manage branches](https://neon.tech/docs/manage/branches/).
-func (s *branch) ListProjectBranches(ctx context.Context, request operations.ListProjectBranchesRequest) (*operations.ListProjectBranchesResponse, error) {
+func (s *branch) ListProjectBranches(ctx context.Context, projectID string) (*operations.ListProjectBranchesResponse, error) {
+	request := operations.ListProjectBranchesRequest{
+		ProjectID: projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches", request, nil)
 	if err != nil {
@@ -1074,7 +1150,13 @@ func (s *branch) ListProjectBranches(ctx context.Context, request operations.Lis
 // You can obtain the `role_name` by listing the roles for a branch.
 // In Neon, the terms "role" and "user" are synonymous.
 // For related information, see [Managing users](https://neon.tech/docs/manage/users/).
-func (s *branch) ResetProjectBranchRolePassword(ctx context.Context, request operations.ResetProjectBranchRolePasswordRequest) (*operations.ResetProjectBranchRolePasswordResponse, error) {
+func (s *branch) ResetProjectBranchRolePassword(ctx context.Context, branchID string, projectID string, roleName string) (*operations.ResetProjectBranchRolePasswordResponse, error) {
+	request := operations.ResetProjectBranchRolePasswordRequest{
+		BranchID:  branchID,
+		ProjectID: projectID,
+		RoleName:  roleName,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/roles/{role_name}/reset_password", request, nil)
 	if err != nil {
@@ -1143,7 +1225,12 @@ func (s *branch) ResetProjectBranchRolePassword(ctx context.Context, request ope
 // You can obtain a `project_id` by listing the projects for your Neon account.
 // You can obtain the `branch_id` by listing the project's branches.
 // For more information, see [Manage branches](https://neon.tech/docs/manage/branches/).
-func (s *branch) SetPrimaryProjectBranch(ctx context.Context, request operations.SetPrimaryProjectBranchRequest) (*operations.SetPrimaryProjectBranchResponse, error) {
+func (s *branch) SetPrimaryProjectBranch(ctx context.Context, branchID string, projectID string) (*operations.SetPrimaryProjectBranchResponse, error) {
+	request := operations.SetPrimaryProjectBranchRequest{
+		BranchID:  branchID,
+		ProjectID: projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/set_as_primary", request, nil)
 	if err != nil {
@@ -1212,7 +1299,13 @@ func (s *branch) SetPrimaryProjectBranch(ctx context.Context, request operations
 // You can obtain a `project_id` by listing the projects for your Neon account.
 // You can obtain the `branch_id` by listing the project's branches.
 // For more information, see [Manage branches](https://neon.tech/docs/manage/branches/).
-func (s *branch) UpdateProjectBranch(ctx context.Context, request operations.UpdateProjectBranchRequest) (*operations.UpdateProjectBranchResponse, error) {
+func (s *branch) UpdateProjectBranch(ctx context.Context, branchUpdateRequest shared.BranchUpdateRequest, branchID string, projectID string) (*operations.UpdateProjectBranchResponse, error) {
+	request := operations.UpdateProjectBranchRequest{
+		BranchUpdateRequest: branchUpdateRequest,
+		BranchID:            branchID,
+		ProjectID:           projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}", request, nil)
 	if err != nil {
@@ -1291,7 +1384,14 @@ func (s *branch) UpdateProjectBranch(ctx context.Context, request operations.Upd
 // You can obtain a `project_id` by listing the projects for your Neon account.
 // You can obtain the `branch_id` and `database_name` by listing the branch's databases.
 // For related information, see [Manage databases](https://neon.tech/docs/manage/databases/).
-func (s *branch) UpdateProjectBranchDatabase(ctx context.Context, request operations.UpdateProjectBranchDatabaseRequest) (*operations.UpdateProjectBranchDatabaseResponse, error) {
+func (s *branch) UpdateProjectBranchDatabase(ctx context.Context, databaseUpdateRequest shared.DatabaseUpdateRequest, branchID string, databaseName string, projectID string) (*operations.UpdateProjectBranchDatabaseResponse, error) {
+	request := operations.UpdateProjectBranchDatabaseRequest{
+		DatabaseUpdateRequest: databaseUpdateRequest,
+		BranchID:              branchID,
+		DatabaseName:          databaseName,
+		ProjectID:             projectID,
+	}
+
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/projects/{project_id}/branches/{branch_id}/databases/{database_name}", request, nil)
 	if err != nil {

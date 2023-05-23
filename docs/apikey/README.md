@@ -120,9 +120,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.APIKey.RevokeAPIKey(ctx, operations.RevokeAPIKeyRequest{
-        KeyID: 715190,
-    })
+    res, err := s.APIKey.RevokeAPIKey(ctx, 715190)
     if err != nil {
         log.Fatal(err)
     }
