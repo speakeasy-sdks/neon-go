@@ -8,6 +8,7 @@
   <a href="https://github.com/speakeasy-sdks/neon-go/releases"><img src="https://img.shields.io/github/v/release/speakeasy-sdks/neon-go?sort=semver&style=for-the-badge" /></a>
 </div>
 <!-- Start SDK Installation -->
+
 ## SDK Installation
 
 ```bash
