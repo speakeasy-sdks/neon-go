@@ -9,7 +9,6 @@
 </div>
 
 <!-- Start SDK Installation -->
-
 ## SDK Installation
 
 ```bash
