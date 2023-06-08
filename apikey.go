@@ -16,22 +16,12 @@ import (
 
 // apiKey - These methods allow you to create and manage API keys for your Neon account. For related information, see [Manage API keys](https://neon.tech/docs/manage/api-keys).
 type apiKey struct {
-	defaultClient  HTTPClient
-	securityClient HTTPClient
-	serverURL      string
-	language       string
-	sdkVersion     string
-	genVersion     string
+	sdkConfiguration sdkConfiguration
 }
 
-func newAPIKey(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *apiKey {
+func newAPIKey(sdkConfig sdkConfiguration) *apiKey {
 	return &apiKey{
-		defaultClient:  defaultClient,
-		securityClient: securityClient,
-		serverURL:      serverURL,
-		language:       language,
-		sdkVersion:     sdkVersion,
-		genVersion:     genVersion,
+		sdkConfiguration: sdkConfig,
 	}
 }
 
@@ -42,7 +32,7 @@ func newAPIKey(defaultClient, securityClient HTTPClient, serverURL, language, sd
 // API keys can also be managed in the Neon Console.
 // See [Manage API keys](https://neon.tech/docs/manage/api-keys/).
 func (s *apiKey) CreateAPIKey(ctx context.Context, request shared.APIKeyCreateRequest) (*operations.CreateAPIKeyResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api_keys"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -58,11 +48,11 @@ func (s *apiKey) CreateAPIKey(ctx context.Context, request shared.APIKeyCreateRe
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -118,7 +108,7 @@ func (s *apiKey) CreateAPIKey(ctx context.Context, request shared.APIKeyCreateRe
 // API keys can also be managed in the Neon Console.
 // For more information, see [Manage API keys](https://neon.tech/docs/manage/api-keys/).
 func (s *apiKey) ListAPIKeys(ctx context.Context) (*operations.ListAPIKeysResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api_keys"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -126,9 +116,9 @@ func (s *apiKey) ListAPIKeys(ctx context.Context) (*operations.ListAPIKeysRespon
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -190,7 +180,7 @@ func (s *apiKey) RevokeAPIKey(ctx context.Context, keyID int64) (*operations.Rev
 		KeyID: keyID,
 	}
 
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api_keys/{key_id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -201,9 +191,9 @@ func (s *apiKey) RevokeAPIKey(ctx context.Context, keyID int64) (*operations.Rev
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json;q=1, application/json;q=0")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
