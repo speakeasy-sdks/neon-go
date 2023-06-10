@@ -54,59 +54,59 @@ func main() {
 ## Available Resources and Operations
 
 
-### [APIKey](docs/apikey/README.md)
+### [APIKey](docs/sdks/apikey/README.md)
 
-* [CreateAPIKey](docs/apikey/README.md#createapikey) - Create an API key
-* [ListAPIKeys](docs/apikey/README.md#listapikeys) - Get a list of API keys
-* [RevokeAPIKey](docs/apikey/README.md#revokeapikey) - Revoke an API key
+* [CreateAPIKey](docs/sdks/apikey/README.md#createapikey) - Create an API key
+* [ListAPIKeys](docs/sdks/apikey/README.md#listapikeys) - Get a list of API keys
+* [RevokeAPIKey](docs/sdks/apikey/README.md#revokeapikey) - Revoke an API key
 
-### [Branch](docs/branch/README.md)
+### [Branch](docs/sdks/branch/README.md)
 
-* [CreateProjectBranch](docs/branch/README.md#createprojectbranch) - Create a branch
-* [CreateProjectBranchDatabase](docs/branch/README.md#createprojectbranchdatabase) - Create a database
-* [CreateProjectBranchRole](docs/branch/README.md#createprojectbranchrole) - Create a role
-* [DeleteProjectBranch](docs/branch/README.md#deleteprojectbranch) - Delete a branch
-* [DeleteProjectBranchDatabase](docs/branch/README.md#deleteprojectbranchdatabase) - Delete a database
-* [DeleteProjectBranchRole](docs/branch/README.md#deleteprojectbranchrole) - Delete a role
-* [GetProjectBranch](docs/branch/README.md#getprojectbranch) - Get branch details
-* [GetProjectBranchDatabase](docs/branch/README.md#getprojectbranchdatabase) - Get database details
-* [GetProjectBranchRole](docs/branch/README.md#getprojectbranchrole) - Get role details
-* [GetProjectBranchRolePassword](docs/branch/README.md#getprojectbranchrolepassword) - Get role password
-* [ListProjectBranchDatabases](docs/branch/README.md#listprojectbranchdatabases) - Get a list of databases
-* [ListProjectBranchEndpoints](docs/branch/README.md#listprojectbranchendpoints) - Get a list of branch endpoints
-* [ListProjectBranchRoles](docs/branch/README.md#listprojectbranchroles) - Get a list of roles
-* [ListProjectBranches](docs/branch/README.md#listprojectbranches) - Get a list of branches
-* [ResetProjectBranchRolePassword](docs/branch/README.md#resetprojectbranchrolepassword) - Reset the role password
-* [SetPrimaryProjectBranch](docs/branch/README.md#setprimaryprojectbranch) - Set the branch as the primary branch of a project
-* [UpdateProjectBranch](docs/branch/README.md#updateprojectbranch) - Update a branch
-* [UpdateProjectBranchDatabase](docs/branch/README.md#updateprojectbranchdatabase) - Update a database
+* [CreateProjectBranch](docs/sdks/branch/README.md#createprojectbranch) - Create a branch
+* [CreateProjectBranchDatabase](docs/sdks/branch/README.md#createprojectbranchdatabase) - Create a database
+* [CreateProjectBranchRole](docs/sdks/branch/README.md#createprojectbranchrole) - Create a role
+* [DeleteProjectBranch](docs/sdks/branch/README.md#deleteprojectbranch) - Delete a branch
+* [DeleteProjectBranchDatabase](docs/sdks/branch/README.md#deleteprojectbranchdatabase) - Delete a database
+* [DeleteProjectBranchRole](docs/sdks/branch/README.md#deleteprojectbranchrole) - Delete a role
+* [GetProjectBranch](docs/sdks/branch/README.md#getprojectbranch) - Get branch details
+* [GetProjectBranchDatabase](docs/sdks/branch/README.md#getprojectbranchdatabase) - Get database details
+* [GetProjectBranchRole](docs/sdks/branch/README.md#getprojectbranchrole) - Get role details
+* [GetProjectBranchRolePassword](docs/sdks/branch/README.md#getprojectbranchrolepassword) - Get role password
+* [ListProjectBranchDatabases](docs/sdks/branch/README.md#listprojectbranchdatabases) - Get a list of databases
+* [ListProjectBranchEndpoints](docs/sdks/branch/README.md#listprojectbranchendpoints) - Get a list of branch endpoints
+* [ListProjectBranchRoles](docs/sdks/branch/README.md#listprojectbranchroles) - Get a list of roles
+* [ListProjectBranches](docs/sdks/branch/README.md#listprojectbranches) - Get a list of branches
+* [ResetProjectBranchRolePassword](docs/sdks/branch/README.md#resetprojectbranchrolepassword) - Reset the role password
+* [SetPrimaryProjectBranch](docs/sdks/branch/README.md#setprimaryprojectbranch) - Set the branch as the primary branch of a project
+* [UpdateProjectBranch](docs/sdks/branch/README.md#updateprojectbranch) - Update a branch
+* [UpdateProjectBranchDatabase](docs/sdks/branch/README.md#updateprojectbranchdatabase) - Update a database
 
-### [Endpoint](docs/endpoint/README.md)
+### [Endpoint](docs/sdks/endpoint/README.md)
 
-* [CreateProjectEndpoint](docs/endpoint/README.md#createprojectendpoint) - Create an endpoint
-* [DeleteProjectEndpoint](docs/endpoint/README.md#deleteprojectendpoint) - Delete an endpoint
-* [GetProjectEndpoint](docs/endpoint/README.md#getprojectendpoint) - Get an endpoint
-* [ListProjectEndpoints](docs/endpoint/README.md#listprojectendpoints) - Get a list of endpoints
-* [StartProjectEndpoint](docs/endpoint/README.md#startprojectendpoint) - Start an endpoint
-* [SuspendProjectEndpoint](docs/endpoint/README.md#suspendprojectendpoint) - Suspend an endpoint
-* [UpdateProjectEndpoint](docs/endpoint/README.md#updateprojectendpoint) - Update an endpoint
+* [CreateProjectEndpoint](docs/sdks/endpoint/README.md#createprojectendpoint) - Create an endpoint
+* [DeleteProjectEndpoint](docs/sdks/endpoint/README.md#deleteprojectendpoint) - Delete an endpoint
+* [GetProjectEndpoint](docs/sdks/endpoint/README.md#getprojectendpoint) - Get an endpoint
+* [ListProjectEndpoints](docs/sdks/endpoint/README.md#listprojectendpoints) - Get a list of endpoints
+* [StartProjectEndpoint](docs/sdks/endpoint/README.md#startprojectendpoint) - Start an endpoint
+* [SuspendProjectEndpoint](docs/sdks/endpoint/README.md#suspendprojectendpoint) - Suspend an endpoint
+* [UpdateProjectEndpoint](docs/sdks/endpoint/README.md#updateprojectendpoint) - Update an endpoint
 
-### [Operation](docs/operation/README.md)
+### [Operation](docs/sdks/operation/README.md)
 
-* [GetProjectOperation](docs/operation/README.md#getprojectoperation) - Get operation details
-* [ListProjectOperations](docs/operation/README.md#listprojectoperations) - Get a list of operations
+* [GetProjectOperation](docs/sdks/operation/README.md#getprojectoperation) - Get operation details
+* [ListProjectOperations](docs/sdks/operation/README.md#listprojectoperations) - Get a list of operations
 
-### [Preview](docs/preview/README.md)
+### [Preview](docs/sdks/preview/README.md)
 
-* [ListProjectsConsumption](docs/preview/README.md#listprojectsconsumption) - Get a list of projects consumption
+* [ListProjectsConsumption](docs/sdks/preview/README.md#listprojectsconsumption) - Get a list of projects consumption
 
-### [Project](docs/project/README.md)
+### [Project](docs/sdks/project/README.md)
 
-* [CreateProject](docs/project/README.md#createproject) - Create a project
-* [DeleteProject](docs/project/README.md#deleteproject) - Delete a project
-* [GetProject](docs/project/README.md#getproject) - Get project details
-* [ListProjects](docs/project/README.md#listprojects) - Get a list of projects
-* [UpdateProject](docs/project/README.md#updateproject) - Update a project
+* [CreateProject](docs/sdks/project/README.md#createproject) - Create a project
+* [DeleteProject](docs/sdks/project/README.md#deleteproject) - Delete a project
+* [GetProject](docs/sdks/project/README.md#getproject) - Get project details
+* [ListProjects](docs/sdks/project/README.md#listprojects) - Get a list of projects
+* [UpdateProject](docs/sdks/project/README.md#updateproject) - Update a project
 <!-- End SDK Available Operations -->
 
 ### Maturity

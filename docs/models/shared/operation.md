@@ -1,0 +1,18 @@
+# Operation
+
+
+## Fields
+
+| Field                                                             | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `Action`                                                          | [OperationAction](../../models/shared/operationaction.md)         | :heavy_check_mark:                                                | The action performed by the operation                             |
+| `BranchID`                                                        | **string*                                                         | :heavy_minus_sign:                                                | The branch ID                                                     |
+| `CreatedAt`                                                       | [time.Time](https://pkg.go.dev/time#Time)                         | :heavy_check_mark:                                                | A timestamp indicating when the operation was created             |
+| `EndpointID`                                                      | **string*                                                         | :heavy_minus_sign:                                                | The endpoint ID                                                   |
+| `Error`                                                           | **string*                                                         | :heavy_minus_sign:                                                | The error that occured                                            |
+| `FailuresCount`                                                   | *int*                                                             | :heavy_check_mark:                                                | The number of times the operation failed                          |
+| `ID`                                                              | *string*                                                          | :heavy_check_mark:                                                | The operation ID                                                  |
+| `ProjectID`                                                       | *string*                                                          | :heavy_check_mark:                                                | The Neon project ID                                               |
+| `RetryAt`                                                         | [*time.Time](https://pkg.go.dev/time#Time)                        | :heavy_minus_sign:                                                | A timestamp indicating when the operation was last retried        |
+| `Status`                                                          | [OperationStatus](../../models/shared/operationstatus.md)         | :heavy_check_mark:                                                | The status of the operation                                       |
+| `UpdatedAt`                                                       | [time.Time](https://pkg.go.dev/time#Time)                         | :heavy_check_mark:                                                | A timestamp indicating when the operation status was last updated |

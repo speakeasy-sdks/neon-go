@@ -1,0 +1,12 @@
+# GetProjectBranchRolePasswordResponse
+
+
+## Fields
+
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `ContentType`                                                               | *string*                                                                    | :heavy_check_mark:                                                          | N/A                                                                         |
+| `GeneralError`                                                              | [*shared.GeneralError](../../models/shared/generalerror.md)                 | :heavy_minus_sign:                                                          | Role not found                                                              |
+| `RolePasswordResponse`                                                      | [*shared.RolePasswordResponse](../../models/shared/rolepasswordresponse.md) | :heavy_minus_sign:                                                          | Successfully returned password for the specified role                       |
+| `StatusCode`                                                                | *int*                                                                       | :heavy_check_mark:                                                          | N/A                                                                         |
+| `RawResponse`                                                               | [*http.Response](https://pkg.go.dev/net/http#Response)                      | :heavy_minus_sign:                                                          | N/A                                                                         |

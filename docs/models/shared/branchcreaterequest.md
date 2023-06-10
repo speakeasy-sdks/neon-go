@@ -1,0 +1,9 @@
+# BranchCreateRequest
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `Branch`                                                                                          | [*BranchCreateRequestBranch](../../models/shared/branchcreaterequestbranch.md)                    | :heavy_minus_sign:                                                                                | N/A                                                                                               |
+| `Endpoints`                                                                                       | [][BranchCreateRequestEndpointOptions](../../models/shared/branchcreaterequestendpointoptions.md) | :heavy_minus_sign:                                                                                | N/A                                                                                               |
